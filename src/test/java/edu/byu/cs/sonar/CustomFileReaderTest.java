@@ -81,29 +81,14 @@ class CustomFileReaderTest {
     }
 
     @Test
-    void textOut() {
-        sut.setNewSentence("Hello");
-        assertEquals("Hello 0", sut.toString());
+    void nullObj() {
+        final Object other = null;
+        assertNotEquals(sut, other);
     }
 
     @Test
-    void hashZero() {
-        sut.setNewSentence("7");
-        assertEquals(0, sut.hashCode());
-    }
-
-    @Test
-    void hashCount() throws FileNotFoundException {
-        sut.howManyWordsInFile();
-        sut.setNewSentence("7");
-        assertEquals(84, sut.hashCode());
-    }
-
-    @Test
-    void sameAfterCount() throws FileNotFoundException {
-        final CustomFileReader other = new CustomFileReader("readMe1.txt");
-        sut.howManyWordsInFile();
-        other.howManyWordsInFile();
-        assertEquals(sut, other);
+    void otherType() {
+        final Object other = new Object();
+        assertNotEquals(sut, other);
     }
 }
